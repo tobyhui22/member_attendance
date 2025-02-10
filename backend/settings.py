@@ -22,7 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY')
-#SECRET_KEY = 'django-insecure-rcqn35x2q3v3&*)8y274z^zn$*-jk^^&u&w!hf!q2eu01x+4f6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'false').lower() == 'true'
@@ -85,9 +84,7 @@ DATABASES = {
     }
 }
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-if DATABASE_URL:
-    DATABASES['default'] = dj_database_url.parse(DATABASE_URL)
+DATABASES['default'] = dj_database_url.parse("postgresql://django_membership_attendance_user:JWiHVN03vP6EtrJAKRBQ629mPQUPm6Gz@dpg-cukrmpqn91rc73auk750-a.oregon-postgres.render.com/django_membership_attendance")
 
 
 # Password validation
