@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if form.instance.id %}編輯會員{% else %}新增會員{% endif %}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>{% if form.instance.id %}編輯會員{% else %}新增會員{% endif %}</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                
+                {% if form.instance.id %}
+                <div class="mb-3">
+                    <label class="form-label">會員編號</label>
+                    <input type="text" class="form-control" value="{{ form.instance.member_id }}" readonly>
+                </div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label for="id_username" class="form-label">用戶名</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.username.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_last_name" class="form-label">姓氏</label>
+                            {{ form.last_name }}
+                            {% if form.last_name.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.last_name.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="id_first_name" class="form-label">名字</label>
+                            {{ form.first_name }}
+                            {% if form.first_name.errors %}
+                            <div class="alert alert-danger">
+                                {{ form.first_name.errors }}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_email" class="form-label">電子郵件</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.email.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_phone" class="form-label">電話號碼 (選填)</label>
+                    {{ form.phone }}
+                    {% if form.phone.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.phone.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_membership_type" class="form-label">會員類型</label>
+                    {{ form.membership_type }}
+                    {% if form.membership_type.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.membership_type.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">儲存</button>
+                    <a href="{% url 'membership_list' %}" class="btn btn-secondary">返回</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

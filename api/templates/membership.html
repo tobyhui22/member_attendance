@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}會員列表{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center">
+    <h2>會員列表</h2>
+    <a href="{% url 'add_member' %}" class="btn btn-primary">新增會員</a>
+</div>
+
+<table class="table table-striped mt-3">
+    <thead class="table-dark">
+        <tr>
+            <th>用戶</th>
+            <th>會員類型</th>
+            <th>開始日期</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for member in members %}
+        <tr>
+            <td>{{ member.user.username }}</td>
+            <td>{{ member.membership_type }}</td>
+            <td>{{ member.start_date }}</td>
+            <td>
+                <a href="{% url 'edit_member' member.id %}" class="btn btn-sm btn-warning">編輯</a>
+                <a href="{% url 'delete_member' member.id %}" class="btn btn-sm btn-danger" onclick="return confirm('確定刪除？');">刪除</a>
+                <a href="{% url 'member_qr' member.member_id %}" class="btn btn-sm btn-info">會員QR碼</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

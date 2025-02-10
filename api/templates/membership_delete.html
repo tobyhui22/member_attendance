@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}刪除會員{% endblock %}
+
+{% block content %}
+<div class="card border-danger">
+    <div class="card-header bg-danger text-white">
+        <h3>刪除會員</h3>
+    </div>
+    <div class="card-body">
+        <p>確定要刪除 <strong>{{ member.user.username }}</strong> 嗎？此操作無法撤銷！</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">確定刪除</button>
+            <a href="{% url 'membership_list' %}" class="btn btn-secondary">取消</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

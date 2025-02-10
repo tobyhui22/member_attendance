@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}會員簽到{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3>會員簽到</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label for="id_member_id" class="form-label">會員編號</label>
+                    {{ form.member_id }}
+                    {% if form.member_id.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.member_id.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mb-3">
+                    <label for="id_notes" class="form-label">備註</label>
+                    {{ form.notes }}
+                    {% if form.notes.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {{ form.notes.errors }}
+                    </div>
+                    {% endif %}
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">簽到</button>
+                    <a href="{% url 'attendance_list' %}" class="btn btn-secondary">返回</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 
