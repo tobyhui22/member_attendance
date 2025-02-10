@@ -26,7 +26,13 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'false').lower() == 'true'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', '').split(',')
+ALLOWED_HOSTS = [
+    'member-attendance-o51x.onrender.com',
+    '.onrender.com',  # 允許所有 onrender.com 子域名
+    'localhost',
+    '127.0.0.1',
+    '0.0.0.0',
+]
 
 # Application definition
 
